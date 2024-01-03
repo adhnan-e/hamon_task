@@ -8,9 +8,7 @@ import 'navigation/route_constants.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   configureDependencies();
-  runApp(MultiProvider(
-      providers: [],
-      child: const MyApp()));
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -22,7 +20,6 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
-
       ),
       onGenerateRoute: AppRoutes.generateRoute,
       initialRoute: RouteConstants.home,
