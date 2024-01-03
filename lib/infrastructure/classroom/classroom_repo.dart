@@ -14,15 +14,15 @@ class StudentRepo extends IClassroomRepo with BaseRepo {
   Future<Either<ApiFailure, Classroom>> getClassroomById(String classroomId) {
     return super.get(
         '${ApiConstants.classrooms}$classroomId',
-            (p0) => Classroom.fromJson(p0 as Map<String, dynamic>),
-            (p0) => p0?['message'] ?? 'Something Went wrong');
+        (p0) => Classroom.fromJson(p0 as Map<String, dynamic>),
+        (p0) => p0?['message'] ?? 'Something Went wrong');
   }
 
   @override
   Future<Either<ApiFailure, ClassroomModel>> getClassrooms() {
     return super.get(
         ApiConstants.subjects,
-            (p0) => ClassroomModel.fromJson(p0 as Map<String, dynamic>),
-            (p0) => p0?['message'] ?? 'Something Went wrong');
+        (p0) => ClassroomModel.fromJson(p0 as Map<String, dynamic>),
+        (p0) => p0?['message'] ?? 'Something Went wrong');
   }
 }

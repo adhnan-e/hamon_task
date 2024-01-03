@@ -14,15 +14,15 @@ class SubjectRepo extends ISubjectRepo with BaseRepo {
   Future<Either<ApiFailure, Subject>> getSubjectById(String subjectId) {
     return super.get(
         '${ApiConstants.subjects}$subjectId',
-            (p0) => Subject.fromJson(p0 as Map<String, dynamic>),
-            (p0) => p0?['message'] ?? 'Something Went wrong');
+        (p0) => Subject.fromJson(p0 as Map<String, dynamic>),
+        (p0) => p0?['message'] ?? 'Something Went wrong');
   }
 
   @override
   Future<Either<ApiFailure, SubjectModel>> getSubjects() {
     return super.get(
         ApiConstants.subjects,
-            (p0) => SubjectModel.fromJson(p0 as Map<String, dynamic>),
-            (p0) => p0?['message'] ?? 'Something Went wrong');
+        (p0) => SubjectModel.fromJson(p0 as Map<String, dynamic>),
+        (p0) => p0?['message'] ?? 'Something Went wrong');
   }
 }

@@ -37,3 +37,9 @@ dev_dependencies:
 flutter:
 
   uses-material-design: true
+
+
+  assets:
+    - assets/classroom.png
+    - assets/students.png
+    - assets/teacher.png

@@ -44,7 +44,6 @@ mixin BaseRepo {
       String url,
       E Function(Object?) fromJsonE,
       String Function(Map<String, dynamic>?) readAPIError) async {
-    debugPrint('Requesting to $url');
     return sendRequest<E>(
         url, null, fromJsonE, readAPIError, null, RequestType.GET);
   }

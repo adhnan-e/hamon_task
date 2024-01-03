@@ -1,4 +1,3 @@
-import 'package:collection/collection.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'student.g.dart';
@@ -36,16 +35,4 @@ class Student {
       name: name ?? this.name,
     );
   }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    if (other is! Student) return false;
-    final mapEquals = const DeepCollectionEquality().equals;
-    return mapEquals(other.toJson(), toJson());
-  }
-
-  @override
-  int get hashCode =>
-      age.hashCode ^ email.hashCode ^ id.hashCode ^ name.hashCode;
 }
