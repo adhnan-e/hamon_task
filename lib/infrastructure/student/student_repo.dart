@@ -17,13 +17,12 @@ class StudentRepo extends IStudentRepo with BaseRepo {
     return super.get(
         '${ApiConstants.students}$studentId',
         (p0) => Student.fromJson(jsonDecode(p0.toString())),
-        (p0) => p0?['message'] ?? 'Something Went wrong');
+        (p0) => 'Something Went wrong');
   }
 
   @override
   Future<Either<ApiFailure, StudentModel>> getStudents() {
-    return super.get(ApiConstants.subjects, (p0) {
-      print(p0.runtimeType);
+    return super.get(ApiConstants.students, (p0) {
       return StudentModel.fromJson(p0 as Map<String, dynamic>);
     }, (p0) => 'Something Went wrong');
   }

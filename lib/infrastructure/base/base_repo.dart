@@ -9,6 +9,32 @@ import '../../domain/api_failure.dart';
 import '../api_constants.dart';
 
 mixin BaseRepo {
+
+  Future<Either<ApiFailure, E>> patchRequest<E>(
+      String url,
+      Map<String, String> body,
+      E Function(Object?) fromJsonE,
+      String Function(Map<String, dynamic>?) readAPIError,
+      ) async {
+    var headers = {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    };
+    var request = http.Request('PATCH', Uri.parse(url+ApiConstants.apiKey));
+    request.bodyFields = body;
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      final responseObj = fromJsonE(await response.stream.bytesToString());
+
+      return Right(responseObj);
+    } else {
+      return Left(ApiFailure.serverError(message: 'An unknown error occured.!'));
+    }
+  }
+
+
   Future<Either<ApiFailure, E>> post<E>(
     String url,
     Map<String, dynamic> body,

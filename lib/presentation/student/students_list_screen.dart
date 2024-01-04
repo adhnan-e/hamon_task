@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hamon_task/presentation/student/widgets/student_adapter_widget.dart';
 import 'package:provider/provider.dart';
 
+import '../../navigation/route_constants.dart';
 import '../../provider/student_provider.dart';
 
 class StudentsListScreen extends StatefulWidget {
@@ -24,14 +25,21 @@ class _StudentsListScreenState extends State<StudentsListScreen> {
       appBar: AppBar(title: const Text("Students List")),
       body: Consumer<StudentProvider>(
         builder: (context, provider, child) {
-          print("${provider.students?.length}");
-          return ListView.separated(
-            itemCount: provider.students?.length ?? 0,
-            itemBuilder: (context, index) {
-              return StudentAdapterWidget(student: provider.students![index]);
-            },
-            separatorBuilder: (context, index) => const Divider(),
-          );
+          return provider.isLoading
+              ? const Center(child: CircularProgressIndicator())
+              : ListView.separated(
+                  itemCount: provider.students?.length ?? 0,
+                  itemBuilder: (context, index) {
+                    return StudentAdapterWidget(
+                        onTap: () {
+                          provider.student = provider.students![index];
+                          Navigator.of(context)
+                              .pushNamed(RouteConstants.students);
+                        },
+                        student: provider.students![index]);
+                  },
+                  separatorBuilder: (context, index) => const Divider(),
+                );
         },
       ),
     );
