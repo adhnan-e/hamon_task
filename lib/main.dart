@@ -10,23 +10,6 @@ import 'navigation/app_routes.dart';
 import 'navigation/route_constants.dart';
 
 void main() async{
-  var headers = {
-    'Content-Type': 'application/x-www-form-urlencoded'
-  };
-  var request = http.Request('PATCH', Uri.parse('http://nibrahim.pythonanywhere.com/classrooms/2?api_key=36F00'));
-  request.bodyFields = {
-    'subject': '4'
-  };
-  request.headers.addAll(headers);
-
-  http.StreamedResponse response = await request.send();
-
-  if (response.statusCode == 200) {
-    print(await response.stream.bytesToString());
-  }
-  else {
-    print(response.reasonPhrase);
-  }
   WidgetsFlutterBinding.ensureInitialized();
   configureDependencies();
   runApp(MultiProvider(providers: [
